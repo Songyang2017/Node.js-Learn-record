@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+</head>
+<body>
+	<p>express学习</p>
+	<img src="imgs/22.jpg" alt="">
+
+	<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+	<script>
+		$.ajax({
+			url: './topNews',
+			type: 'get',
+			data:{
+				type: 'top',
+				key: 'cfe88a732a8af2dd2cfb88645d266792',
+			},
+			success:function(data){
+				console.log(data);
+			}
+		})
+	</script>
+</body>
+</html>

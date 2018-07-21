@@ -1,0 +1,14 @@
+{
+  "name": "webchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "no"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodejs-websocket": "^1.7.1"
+  }
+}

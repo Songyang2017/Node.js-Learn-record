@@ -1,0 +1,33 @@
+{
+  "name": "nodelearning",
+  "version": "1.0.0",
+  "description": "nodeJs",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Songyang2017/Node.js-Learn-record.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "冬日暖阳",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Songyang2017/Node.js-Learn-record/issues"
+  },
+  "homepage": "https://github.com/Songyang2017/Node.js-Learn-record#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "eventproxy": "^1.0.0",
+    "express_framework": "file:express",
+    "superagent": "^3.8.3",
+    "utility": "^1.14.0"
+  }
+}

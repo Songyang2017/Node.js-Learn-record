@@ -2,6 +2,16 @@ var express = require('express');
 var axios = require('axios');
 var router = express.Router();
 
+// 解决跨域问题，CORS  调用http://localhost:3000/router/list.json
+router.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
   console.log('query: ', req.query);

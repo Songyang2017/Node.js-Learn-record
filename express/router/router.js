@@ -1,6 +1,7 @@
 var express = require('express');
 var axios = require('axios');
 var multer = require('multer');
+var mysql = require('mysql');
 var fs = require('fs');
 var upload = multer({dest: './public/imgs/'});
 var router = express.Router();
@@ -86,7 +87,6 @@ router.route('/book')
 
 //代理跨域
 // var apiRouter = express.Router();
-
 router.get('/topNews',function(req,res){
 	var url = 'http://v.juhe.cn/toutiao/index';
 	axios.get(url,{
@@ -99,6 +99,7 @@ router.get('/topNews',function(req,res){
 	})
 })
 
+//上传文件
 router.post('/file', upload.any(), function(req, res, next) {
     console.log(req.files[0]);
      // 获得文件的临时路径
@@ -115,6 +116,29 @@ router.post('/file', upload.any(), function(req, res, next) {
       });
     });
   });
+
+//mysql 连接
+
+var msg = null;
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database: 'ws',
+  port:3306
+});
+connection.connect();
+connection.query('SELECT * FROM `chat` WHERE 1', function(err, rows, fields) {
+  if (err) throw err;
+  console.log('The solution is: ', rows[0].Cap);
+  msg = rows[0]
+});
+connection.end();
+
+router.get('/bolgText', function(req,res){
+  res.json(msg)
+})
+
 
 router.use(express.static('public'))
 

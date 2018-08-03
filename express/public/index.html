@@ -14,7 +14,7 @@
 		<input type="file" name="thumbnail">
 		<input type="submit">
 	</form>
-	
+	<div id="text"></div>
 	<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
 	<script>
 		$.ajax({
@@ -26,6 +26,16 @@
 			},
 			success:function(data){
 				console.log(data);
+			}
+		})
+
+		$.ajax({
+			url: './bolgText',
+			type: 'get',
+			data:{},
+			success:function(data){
+				console.log(data);
+				$('#text').html(data.Cap)
 			}
 		})
 	</script>

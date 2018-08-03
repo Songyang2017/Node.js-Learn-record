@@ -1,5 +1,8 @@
 var express = require('express');
 var axios = require('axios');
+var multer = require('multer');
+var fs = require('fs');
+var upload = multer({dest: './public/imgs/'});
 var router = express.Router();
 
 // 解决跨域问题，CORS  调用http://localhost:3000/router/list.json
@@ -10,7 +13,6 @@ router.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
-
 
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
@@ -96,6 +98,23 @@ router.get('/topNews',function(req,res){
 		console.log('error', error);
 	})
 })
+
+router.post('/file', upload.any(), function(req, res, next) {
+    console.log(req.files[0]);
+     // 获得文件的临时路径
+     var tmp_path = req.files[0].path;
+    // 指定文件上传后的目录 - 示例为"images"目录。 
+    var target_path = './public/imgs/' + req.files[0].originalname;
+    // 移动文件
+    fs.rename(tmp_path, target_path, function(err) {
+      if (err) throw err;
+      // 删除临时文件夹文件, 
+      fs.unlink(tmp_path, function() {
+         if (err) throw err;
+         res.send('File uploaded to: ' + target_path + ' - ' + req.files[0].size + ' bytes');
+      });
+    });
+  });
 
 router.use(express.static('public'))
 

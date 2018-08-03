@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>index</title>
 </head>
 <body>
 	<p>express学习</p>
-	<img src="imgs/22.jpg" alt="">
+	<!-- <img width="200" src="imgs/22.jpg" alt=""> -->
 
+	<form method="post" enctype="multipart/form-data" action="./file">
+		<input type="file" name="thumbnail">
+		<input type="submit">
+	</form>
+	
 	<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
 	<script>
 		$.ajax({

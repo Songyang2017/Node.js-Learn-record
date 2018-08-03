@@ -4,7 +4,7 @@ var _router = require('./router/router')
 var app = express();
 
 app.use('/birds', birds);
-app.use('/router', _router)
+app.use('/router', _router);
 
 app.get('/', function(req,res){
 	res.send('Hello World')

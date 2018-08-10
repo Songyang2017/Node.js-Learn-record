@@ -136,6 +136,7 @@ connection.query('SELECT * FROM `chat` WHERE 1', function(err, rows, fields) {
 connection.end();
 
 router.get('/bolgText', function(req,res){
+  msg.url = 'http://localhost:3000/router/node.pdf';
   res.json(msg)
 })
 

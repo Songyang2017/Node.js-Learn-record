@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>index</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>index</title>
+<link rel="stylesheet" href="//static.jsk365.com/lib/cube-ui/cube.min.css">
 </head>
 <body>
 	<p>express学习</p>
 	<!-- <img width="200" src="imgs/22.jpg" alt=""> -->
 
-	<form method="post" enctype="multipart/form-data" action="./file">
+	<!-- <form method="post" enctype="multipart/form-data" action="./file">
 		<input type="file" name="thumbnail">
 		<input type="submit">
 	</form>
-	<div id="text"></div>
-	<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
-	<script>
-		$.ajax({
-			url: './topNews',
-			type: 'get',
-			data:{
-				type: 'top',
-				key: 'cfe88a732a8af2dd2cfb88645d266792',
-			},
-			success:function(data){
-				console.log(data);
-			}
-		})
-		
-		$.ajax({
-			url: './bolgText',
-			type: 'get',
-			ifModified: true,
-			success:function(data){
-				console.log(data);
-				$('#text').html(data.Cap)
-			}
-		})
-	</script>
+	<div id="text"></div> -->
+	
+	<div id="app">
+		<div style="padding:10px">
+			<cube-upload
+			  action="./file"
+			  :simultaneous-uploads="1"
+			  @files-added="filesAdded" />
+		</div>
+	</div>
+<script type="text/javascript" src="//static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
+<script type="text/javascript" src="//static.jsk365.com/lib/cube-ui/cube.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+<script>
+	$.ajax({
+		url: './topNews',
+		type: 'get',
+		data:{
+			type: 'top',
+			key: 'cfe88a732a8af2dd2cfb88645d266792',
+		},
+		success:function(data){
+			console.log(data);
+		}
+	})
+	
+	$.ajax({
+		url: './bolgText',
+		type: 'get',
+		ifModified: true,
+		success:function(data){
+			console.log(data);
+			$('#text').html(data.Cap)
+		}
+	})
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			
+		},
+		methods:{
+			filesAdded:function(files) {
+		      let hasIgnore = false
+		      const maxSize = 2 * 1024 * 1024 // 1M
+		      for (let k in files) {
+		        const file = files[k]
+		        if (file.size > maxSize) {
+		          file.ignore = true
+		          hasIgnore = true
+		        }
+		      }
+		      hasIgnore && this.$createToast({
+		        type: 'warn',
+		        time: 1000,
+		        txt: '上传图片不得大于2M'
+		      }).show()
+		    }
+		}
+	})
+</script>
 </body>
 </html>

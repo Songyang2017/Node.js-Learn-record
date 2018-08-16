@@ -141,6 +141,16 @@ router.get('/bolgText', function(req,res){
 })
 
 
+router.get('/login', function(req, res){
+  var code = req.query.code;
+  if(code){
+    res.json({
+      openid: 123,
+      session_key: 123456
+    })
+  }
+})
+
 router.use(express.static('public'))
 
 module.exports = router;

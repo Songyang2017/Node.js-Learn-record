@@ -10,24 +10,27 @@
 	<p>express学习</p>
 	<!-- <img width="200" src="imgs/22.jpg" alt=""> -->
 
-	<!-- <form method="post" enctype="multipart/form-data" action="./file">
-		<input type="file" name="thumbnail">
+	<form method="post" enctype="multipart/form-data" action="./file">
+		<input id="input" type="file" name="thumbnail" multiple>
 		<input type="submit">
 	</form>
-	<div id="text"></div> -->
+	<div id="text"></div>
 	
-	<div id="app">
+	<!-- <div id="app">
 		<div style="padding:10px">
 			<cube-upload
 			  action="./file"
 			  :simultaneous-uploads="1"
 			  @files-added="filesAdded" />
 		</div>
-	</div>
+	</div> -->
 <script type="text/javascript" src="//static.jsk365.com/lib/vue/2.5.3/vue.min.js"></script>
 <script type="text/javascript" src="//static.jsk365.com/lib/cube-ui/cube.min.js"></script>
 <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
 <script>
+	var inp = document.getElementById('input'); 
+
+
 	$.ajax({
 		url: './topNews',
 		type: 'get',

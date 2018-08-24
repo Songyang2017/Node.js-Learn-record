@@ -101,18 +101,18 @@ router.get('/topNews',function(req,res){
 
 //上传文件
 router.post('/file', upload.any(), function(req, res, next) {
-    console.log(req.files[0]);
+    console.log(req.files[0],res.headers);
      // 获得文件的临时路径
      var tmp_path = req.files[0].path;
     // 指定文件上传后的目录 - 示例为"images"目录。 
-    var target_path = './public/imgs/' + req.files[0].originalname;
+    var target_path = 'public/imgs/' + req.files[0].originalname;
     // 移动文件
     fs.rename(tmp_path, target_path, function(err) {
       if (err) throw err;
       // 删除临时文件夹文件, 
       fs.unlink(tmp_path, function() {
          if (err) throw err;
-         res.send('File uploaded to: ' + target_path + ' - ' + req.files[0].size + ' bytes');
+         res.json({url: (target_path)});
       });
     });
   });

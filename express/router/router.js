@@ -9,10 +9,21 @@ var router = express.Router();
 // 解决跨域问题，CORS  调用http://localhost:3000/router/list.json
 router.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
+  // res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  // res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  // res.header('Access-Control-Allow-Headers', 'Accept-Ranges');
+  // res.header('Content-Length','65536*16');
+  // res.header('Accept-Ranges', 'bytes');
+  // res.header('Accept-Encoding', 'gzip');
+  // res.headers({'Content-Length': '65536*16'});
+  // console.log(res)
+  // res.set('Content-Length', '65536');
+  // res.set({
+  //   'Content-Type': 'text/plain',
+  //   'Content-Length': '65536*16',
+  //   'ETag': '12345'
+  // })
+  next(); 
 });
 
 // 该路由使用的中间件
